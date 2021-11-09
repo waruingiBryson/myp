@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356665060775",
+    "project_id": "tearnnie-eatery-app",
+    "storage_bucket": "tearnnie-eatery-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356665060775:android:b579f220d08fec1c545a82",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356665060775-1ej6vii2pgj721gvajr1cb01j660p9op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEkyMwbAZcgBFRAJGAWD1QDQKv_Pgg3uU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356665060775-1ej6vii2pgj721gvajr1cb01j660p9op.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

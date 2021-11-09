@@ -9,16 +9,16 @@
             android:title="Home"
             app:showAsAction="never" />
         <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_box_black_24dp"
+            android:title="My Profile"
+            app:showAsAction="never" />
+        <item
             android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="Notifications"
             app:showAsAction="never" />
 
-        <item
-            android:id="@+id/nav_cart"
-            android:icon="@drawable/ic_shopping_cart_black_24dp"
-            android:title="Cart"
-            app:showAsAction="never" />
         <item
             android:id="@+id/nav_users"
             android:icon="@drawable/ic_people_outline_black_24dp"

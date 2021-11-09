@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:background="#1A17CD"
     android:fitsSystemWindows="true"
-    tools:context=".Burger"
-    tools:openDrawer="start">
+    tools:context=".Burger">
+
 
 
     <LinearLayout
@@ -68,7 +68,7 @@
                 android:layout_width="142dp"
                 android:layout_height="47dp"
                 android:layout_marginTop="19dp"
-                android:layout_marginBottom="228dp"
+                android:layout_marginBottom="288dp"
                 android:background="#31D272"
                 android:gravity="right"
                 android:text="Ksh 120"
@@ -99,6 +99,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 app:layout_constraintVertical_bias="0.715" />
 
+            <Button
+                android:id="@+id/points_button"
+                android:layout_width="211dp"
+                android:layout_height="78dp"
+                android:layout_marginBottom="16dp"
+                android:background="#000"
+                android:text="Order using points"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.945"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintVertical_bias="0.715" />
+
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
@@ -108,6 +125,25 @@
                 android:background="#31D272"
                 android:gravity="center_vertical"
                 android:text="Earn 60 points when you order "
+                android:textColor="#111"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.059" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="411dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="224dp"
+                android:background="#31D272"
+                android:gravity="center_vertical"
+                android:text="You can order using 300points "
                 android:textColor="#111"
                 android:textSize="20sp"
                 android:textStyle="bold"

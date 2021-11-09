@@ -9,7 +9,9 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,11 +21,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Salad extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
-    Button button;
+    Button button,button2;
+    public static int points;
+    FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
+    String userID;
+    String mypoints;
 
 
     @Override
@@ -35,9 +48,63 @@ public class Salad extends AppCompatActivity implements NavigationView.OnNavigat
 
 
         button = findViewById(R.id.salad_button);
+        button2 = findViewById(R.id.points_button);
+
+        mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        SharedPreferences sharedPreferences=this.getSharedPreferences("mypoints", Context.MODE_PRIVATE);
+        points =sharedPreferences.getInt("points",0);
+
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(points>=250){
+                    points -=250;
+                    SharedPreferences sharedPreferences=getSharedPreferences("mypoints",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putInt("points",points);
+                    editor.apply();
+                    userID = mAuth.getCurrentUser().getUid();
+                    mypoints = String.valueOf(points);
+                    DocumentReference documentReference = fStore.collection("users points").document(userID);
+                    Map<String,Object> user = new HashMap<>();
+                    user.put("mypoints",mypoints);
+                    documentReference.set(user);
+
+
+                    //notification code
+
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(Salad.this, "my notification");
+                    builder.setContentTitle("Tearnie eatery");
+                    builder.setContentText("Order received");
+                    builder.setSmallIcon(R.drawable.ic_stat_name);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Salad.this);
+                    managerCompat.notify(1, builder.build());
+
+                }
+                else {
+                    Toast.makeText(Salad.this, "You Do Not Have Enough Points to make this Order", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                points +=50;
+                SharedPreferences sharedPreferences=getSharedPreferences("mypoints",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putInt("points",points);
+                editor.apply();
+                userID = mAuth.getCurrentUser().getUid();
+                mypoints = String.valueOf(points);
+                DocumentReference documentReference = fStore.collection("users points").document(userID);
+                Map<String,Object> user = new HashMap<>();
+                user.put("mypoints",mypoints);
+                documentReference.set(user);
                 //notification code
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(Salad.this, "my notification");
@@ -78,10 +145,6 @@ public class Salad extends AppCompatActivity implements NavigationView.OnNavigat
                 Intent intent=new Intent(this,Main3Activity.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_cart:
-                Intent intent1=new Intent(this,CartActivity.class);
-                startActivity(intent1);
-                break;
             case R.id.nav_notifications:
                 Intent intent2=new Intent(this,NotificationsActivity.class);
                 startActivity(intent2);
@@ -93,6 +156,10 @@ public class Salad extends AppCompatActivity implements NavigationView.OnNavigat
             case R.id.nav_points:
                 Intent intent4=new Intent(this,PointsActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.nav_profile:
+                Intent intent5 = new Intent(this, My_profile.class);
+                startActivity(intent5);
                 break;
         }
 
